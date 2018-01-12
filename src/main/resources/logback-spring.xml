@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="logging.pattern.file" source="logging.pattern.file"/>
+    <springProperty name="logging.files.size" source="logging.files.size"/>
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %d %green([%thread]) %highlight(%level) %logger{50} %X{uniqueTrackingNumber} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.tmobile" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.apache" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.apache.cxf.interceptor" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!-- log the cxf req/res to sl4jLog format -->
+    <logger name="org.apache.cxf.services" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
